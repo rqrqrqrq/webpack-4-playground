@@ -10,9 +10,19 @@ const Index = Loadable({
   ...loadableConfig,
 });
 
-export const routes = [
+const About = Loadable({
+  loader: () => import(/* webpackChunkName: "about-page" */ './About'),
+  ...loadableConfig,
+});
+
+export default [
   {
     path: '/',
+    exact: true,
     component: Index,
+  },
+  {
+    path: '/about',
+    component: About,
   },
 ];
