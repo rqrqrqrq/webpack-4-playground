@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name]-[chunkhash].js',
+    filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
   },
   plugins: [
@@ -28,6 +28,7 @@ module.exports = {
             ['@babel/plugin-proposal-class-properties', { loose: true }],
             ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
             '@babel/plugin-syntax-dynamic-import',
+            'react-hot-loader/babel',
           ],
           presets: [
             '@babel/react',
