@@ -3,3 +3,4 @@
 /.vscode/
 yarn-error.log
 npm-error.log
+jsconfig.json
