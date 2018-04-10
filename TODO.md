@@ -4,6 +4,6 @@
 * react error overlay
 * circular deps plugin
 * ssr
-* hot
+* hot (partialy implemented)
 * code spliting
 * service worker
