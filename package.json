@@ -9,6 +9,13 @@
     "prod": "NODE_ENV=production npm run build",
     "analyze": "ANALYZE=true npm run build"
   },
+  "dependencies": {
+    "prop-types": "^15.6.1",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-loadable": "^5.3.1",
+    "react-router-dom": "^4.2.2"
+  },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.44",
     "@babel/plugin-proposal-class-properties": "^7.0.0-beta.44",
@@ -28,11 +35,5 @@
     "webpack-bundle-analyzer": "^2.11.1",
     "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.1"
-  },
-  "dependencies": {
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
-    "react-loadable": "^5.3.1",
-    "react-router-dom": "^4.2.2"
   }
 }
