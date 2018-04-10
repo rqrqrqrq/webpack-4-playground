@@ -16,7 +16,10 @@ module.exports = {
       filename: 'index.html',
       template: 'src/index.html',
     }),
-    process.env.ANALYZE && new BundleAnalyzerPlugin(),
+    process.env.ANALYZE &&
+      new BundleAnalyzerPlugin({
+        defaultSizes: 'gzip',
+      }),
     process.env.NODE_ENV === 'production' &&
       new MiniCssExtractPlugin({
         filename: '[name]-[hash].css',
