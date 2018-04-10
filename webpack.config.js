@@ -1,8 +1,13 @@
 const path = require('path');
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+
+const IS_PROD = process.env.NODE_ENV === 'production';
 
 module.exports = {
   entry: './src/index.js',
@@ -20,7 +25,7 @@ module.exports = {
       new BundleAnalyzerPlugin({
         defaultSizes: 'gzip',
       }),
-    process.env.NODE_ENV === 'production' &&
+    IS_PROD &&
       new MiniCssExtractPlugin({
         filename: '[name]-[contenthash].css',
       }),
@@ -56,10 +61,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use:
-          process.env.NODE_ENV === 'production'
-            ? [MiniCssExtractPlugin.loader, 'css-loader']
-            : ['style-loader', 'css-loader'],
+        use: IS_PROD
+          ? [MiniCssExtractPlugin.loader, 'css-loader']
+          : ['style-loader', 'css-loader'],
       },
     ],
   },
@@ -72,8 +76,16 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
     },
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: !IS_PROD,
+      }),
+      new OptimizeCSSAssetsPlugin({}),
+    ],
   },
-  devtool: process.env.NODE_ENV !== 'production' && 'eval-source-map',
+  devtool: !IS_PROD && 'eval-source-map',
   target: 'web',
-  mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
+  mode: IS_PROD ? 'production' : 'development',
 };
