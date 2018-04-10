@@ -8,8 +8,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name]-[hash].js',
-    chunkFilename: '[name]-[chunkhash].js',
+    filename: '[name]-[contenthash].js',
+    chunkFilename: '[name]-[contenthash].js',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -22,7 +22,7 @@ module.exports = {
       }),
     process.env.NODE_ENV === 'production' &&
       new MiniCssExtractPlugin({
-        filename: '[name]-[hash].css',
+        filename: '[name]-[contenthash].css',
       }),
   ].filter(Boolean),
   module: {
@@ -32,6 +32,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
+          cacheDirectory: true,
           plugins: [
             ['@babel/plugin-proposal-class-properties', { loose: true }],
             ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
