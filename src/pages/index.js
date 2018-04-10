@@ -6,12 +6,12 @@ const loadableConfig = {
 };
 
 const Index = Loadable({
-  loader: () => import(/* webpackChunkName: "index-page" */ './IndexPage'),
+  loader: () => import('./IndexPage' /* webpackChunkName: "index-page" */),
   ...loadableConfig,
 });
 
 const About = Loadable({
-  loader: () => import(/* webpackChunkName: "about-page" */ './About'),
+  loader: () => import('./About' /* webpackChunkName: "about-page" */),
   ...loadableConfig,
 });
 
