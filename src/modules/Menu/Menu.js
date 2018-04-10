@@ -1,10 +1,14 @@
+import './Menu.css';
+
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from './Link';
 
 export const Menu = () => (
-  <ul>
+  <ul className="Menu">
     <li>
-      <Link to="/">index</Link>
+      <Link exact to="/">
+        index
+      </Link>
     </li>
     <li>
       <Link to="/about">about</Link>

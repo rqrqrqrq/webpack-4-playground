@@ -1,0 +1,14 @@
+.Menu__Link {
+  color: coral;
+  text-decoration: none;
+}
+
+.Menu__Link:hover,
+.Menu__Link:focus {
+  color: darkorchid;
+  text-decoration: underline;
+}
+
+.Menu__Link--active {
+  color: green;
+}

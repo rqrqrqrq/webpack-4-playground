@@ -1,3 +1,4 @@
+* css minification
 * ssr
 * hot
 * code spliting

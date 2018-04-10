@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin;
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: './src/index.js',
@@ -16,6 +17,10 @@ module.exports = {
       template: 'src/index.html',
     }),
     process.env.ANALYZE && new BundleAnalyzerPlugin(),
+    process.env.NODE_ENV === 'production' &&
+      new MiniCssExtractPlugin({
+        filename: '[name]-[hash].css',
+      }),
   ].filter(Boolean),
   module: {
     rules: [
@@ -44,6 +49,13 @@ module.exports = {
             ],
           ],
         },
+      },
+      {
+        test: /\.css$/,
+        use:
+          process.env.NODE_ENV === 'production'
+            ? [MiniCssExtractPlugin.loader, 'css-loader']
+            : ['style-loader', 'css-loader'],
       },
     ],
   },

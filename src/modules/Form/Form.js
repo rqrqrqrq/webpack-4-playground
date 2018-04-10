@@ -1,9 +1,13 @@
+import './Form.css';
+
 import React from 'react';
 
 const FormInner = ({ value, ...props }) => (
   <>
     <input value={value} {...props} />
-    <button type="reset">reset</button>
+    <button className="Form__Button" type="reset">
+      reset
+    </button>
   </>
 );
 
