@@ -40,7 +40,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          cacheDirectory: true,
+          cacheDirectory: !IS_PROD,
           plugins: [
             ['@babel/plugin-proposal-class-properties', { loose: true }],
             ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
