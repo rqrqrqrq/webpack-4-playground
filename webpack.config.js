@@ -9,12 +9,15 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
+const getFilenameFormat = ext =>
+  IS_PROD ? `[name]-[contenthash].${ext}` : `[name].${ext}`;
+
 module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name]-[contenthash].js',
-    chunkFilename: '[name]-[contenthash].js',
+    filename: getFilenameFormat('js'),
+    chunkFilename: getFilenameFormat('js'),
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -27,7 +30,7 @@ module.exports = {
       }),
     IS_PROD &&
       new MiniCssExtractPlugin({
-        filename: '[name]-[contenthash].css',
+        filename: getFilenameFormat('css'),
       }),
   ].filter(Boolean),
   module: {
