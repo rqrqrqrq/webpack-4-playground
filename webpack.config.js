@@ -64,9 +64,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: IS_PROD
-          ? [MiniCssExtractPlugin.loader, 'css-loader']
-          : ['style-loader', 'css-loader'],
+        use: [IS_PROD && MiniCssExtractPlugin.loader, 'css-loader'].filter(
+          Boolean,
+        ),
       },
     ],
   },
