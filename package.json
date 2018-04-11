@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server --progress --history-api-fallback --hot",
-    "build": "rm -rf dist/** &&  webpack --progress",
+    "build": "rimraf dist/** &&  webpack --progress",
     "prod": "cross-env NODE_ENV=production npm run build",
     "analyze": "cross-env ANALYZE=true npm run prod"
   },
@@ -30,6 +30,7 @@
     "mini-css-extract-plugin": "^0.4.0",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
     "react-hot-loader": "^4.0.1",
+    "rimraf": "^2.6.2",
     "style-loader": "^0.20.3",
     "uglifyjs-webpack-plugin": "^1.2.4",
     "webpack": "^4.5.0",
