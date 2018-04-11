@@ -1,0 +1,1 @@
+export { getNotFoundRoute } from './NotFoundRoute';
