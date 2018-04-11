@@ -2,9 +2,9 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { hot } from 'react-hot-loader';
 
-import { RoutesConfig } from '@/modules/RoutesConfig';
 import routes from '@/pages';
-import { Menu } from './modules/Menu';
+import { RoutesConfig } from '@/modules/RoutesConfig';
+import { Menu } from '@/modules/Menu';
 
 const App = () => (
   <>
