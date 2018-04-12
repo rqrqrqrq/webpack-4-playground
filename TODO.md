@@ -1,3 +1,4 @@
+* find a way to extract babel runtime from every chunk to vendors
 * eslint
 * flow
 * error reporting

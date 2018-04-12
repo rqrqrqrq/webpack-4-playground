@@ -43,7 +43,10 @@ module.exports = {
           cacheDirectory: !IS_PROD,
           plugins: [
             ['@babel/plugin-proposal-class-properties', { loose: true }],
-            ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
+            [
+              '@babel/plugin-proposal-object-rest-spread',
+              { useBuiltIns: true },
+            ],
             '@babel/plugin-syntax-dynamic-import',
             [
               '@babel/plugin-transform-runtime',
@@ -53,13 +56,24 @@ module.exports = {
                 regenerator: true,
               },
             ],
-            IS_PROD && 'transform-react-remove-prop-types',
+            IS_PROD && [
+              'transform-react-remove-prop-types',
+              {
+                removeImport: true,
+              },
+            ],
             !IS_PROD && 'react-hot-loader/babel',
           ].filter(Boolean),
           presets: [
-            '@babel/react',
             [
-              '@babel/env',
+              '@babel/preset-react',
+              {
+                development: !IS_PROD,
+                useBuiltIns: true,
+              },
+            ],
+            [
+              '@babel/preset-env',
               {
                 targets: {
                   browsers: ['last 2 versions'],

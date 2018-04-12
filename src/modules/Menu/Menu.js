@@ -16,5 +16,11 @@ export const Menu = () => (
     <li>
       <Link to="/counters">counters</Link>
     </li>
+    <li>
+      <Link to="/babel">babel tests</Link>
+    </li>
+    <li>
+      <Link to="/chuck">chuck norris jokes</Link>
+    </li>
   </ul>
 );

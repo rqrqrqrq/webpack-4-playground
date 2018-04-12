@@ -21,6 +21,17 @@ const Counters = Loadable({
   ...loadableConfig,
 });
 
+const BabelTest = Loadable({
+  loader: () => import('./BabelTest' /* webpackChunkName: "babel-test-page" */),
+  ...loadableConfig,
+});
+
+const ChuckNorrisJokes = Loadable({
+  loader: () =>
+    import('./ChuckNorrisJokes' /* webpackChunkName: "chuck-norris" */),
+  ...loadableConfig,
+});
+
 export default [
   {
     path: '/',
@@ -34,5 +45,13 @@ export default [
   {
     path: '/counters',
     component: Counters,
+  },
+  {
+    path: '/babel',
+    component: BabelTest,
+  },
+  {
+    path: '/chuck',
+    component: ChuckNorrisJokes,
   },
 ];
