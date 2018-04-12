@@ -7,10 +7,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
-const IS_PROD = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === 'production';
 
 const getFilenameFormat = ext =>
-  IS_PROD ? `[name]-[contenthash].${ext}` : `[name].${ext}`;
+  isProd ? `[name]-[contenthash].${ext}` : `[name].${ext}`;
 
 module.exports = {
   entry: './src/index.js',
@@ -28,7 +28,7 @@ module.exports = {
       new BundleAnalyzerPlugin({
         defaultSizes: 'gzip',
       }),
-    IS_PROD &&
+    isProd &&
       new MiniCssExtractPlugin({
         filename: getFilenameFormat('css'),
       }),
@@ -40,7 +40,7 @@ module.exports = {
         loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          cacheDirectory: !IS_PROD,
+          cacheDirectory: !isProd,
           plugins: [
             ['@babel/plugin-proposal-class-properties', { loose: true }],
             [
@@ -56,19 +56,19 @@ module.exports = {
                 regenerator: true,
               },
             ],
-            IS_PROD && [
+            isProd && [
               'transform-react-remove-prop-types',
               {
                 removeImport: true,
               },
             ],
-            !IS_PROD && 'react-hot-loader/babel',
+            !isProd && 'react-hot-loader/babel',
           ].filter(Boolean),
           presets: [
             [
               '@babel/preset-react',
               {
-                development: !IS_PROD,
+                development: !isProd,
                 useBuiltIns: true,
               },
             ],
@@ -88,7 +88,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          IS_PROD ? MiniCssExtractPlugin.loader : 'style-loader',
+          isProd ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
         ],
       },
@@ -107,12 +107,12 @@ module.exports = {
       new UglifyJsPlugin({
         cache: true,
         parallel: true,
-        sourceMap: !IS_PROD,
+        sourceMap: !isProd,
       }),
       new OptimizeCSSAssetsPlugin({}),
     ],
   },
-  devtool: !IS_PROD && 'eval-source-map',
+  devtool: !isProd && 'eval-source-map',
   target: 'web',
-  mode: IS_PROD ? 'production' : 'development',
+  mode: isProd ? 'production' : 'development',
 };
