@@ -8,3 +8,10 @@
 * hot (partialy implemented)
 * code spliting
 * service worker
+
+---
+
+webpack plugins:
+
+* ManifestPlugin
+* ModuleScopePlugin
