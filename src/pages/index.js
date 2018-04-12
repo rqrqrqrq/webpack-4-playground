@@ -15,6 +15,12 @@ const About = Loadable({
   ...loadableConfig,
 });
 
+const Counters = Loadable({
+  loader: () =>
+    import('./CountersPage' /* webpackChunkName: "counters-page" */),
+  ...loadableConfig,
+});
+
 export default [
   {
     path: '/',
@@ -24,5 +30,9 @@ export default [
   {
     path: '/about',
     component: About,
+  },
+  {
+    path: '/counters',
+    component: Counters,
   },
 ];

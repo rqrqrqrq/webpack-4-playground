@@ -45,6 +45,14 @@ module.exports = {
             ['@babel/plugin-proposal-class-properties', { loose: true }],
             ['@babel/plugin-proposal-object-rest-spread', { loose: true }],
             '@babel/plugin-syntax-dynamic-import',
+            [
+              '@babel/plugin-transform-runtime',
+              {
+                helpers: false,
+                polyfill: false,
+                regenerator: true,
+              },
+            ],
             IS_PROD && 'transform-react-remove-prop-types',
             !IS_PROD && 'react-hot-loader/babel',
           ].filter(Boolean),

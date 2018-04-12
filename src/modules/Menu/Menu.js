@@ -13,5 +13,8 @@ export const Menu = () => (
     <li>
       <Link to="/about">about</Link>
     </li>
+    <li>
+      <Link to="/counters">counters</Link>
+    </li>
   </ul>
 );
