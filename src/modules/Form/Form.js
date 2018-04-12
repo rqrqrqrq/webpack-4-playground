@@ -1,6 +1,7 @@
 import './Form.css';
 
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
 const FormInner = ({ value, ...props }) => (
   <>
@@ -10,6 +11,10 @@ const FormInner = ({ value, ...props }) => (
     </button>
   </>
 );
+
+FormInner.propTypes = {
+  value: PropTypes.string.isRequired,
+};
 
 export class Form extends React.Component {
   state = {
