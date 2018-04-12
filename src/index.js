@@ -1,3 +1,5 @@
+import '@/modules/polyfills';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -23,10 +25,12 @@ const render = vdom => ReactDOM.render(vdom, rootEl);
 render(wrapInProvider(RootProvider, App));
 
 if (module.hot) {
-  module.hot.accept(() => {
+  module.hot.accept(['./App', './modules/RootProvider'], () => {
     const newApp = require('./App');
 
     const provider = require('./modules/RootProvider');
+
+    ReactDOM.unmountComponentAtNode(rootEl);
 
     render(wrapInProvider(provider, newApp));
   });

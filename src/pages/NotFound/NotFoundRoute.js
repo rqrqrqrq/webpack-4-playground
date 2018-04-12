@@ -4,7 +4,7 @@ import Loadable from 'react-loadable';
 
 const NotFoundPage = Loadable({
   loader: () =>
-    import(/* webpackChunkName: "not-found-page" */ './NotFoundPage'),
+    import('./NotFoundPage' /* webpackChunkName: "not-found-page" */),
   loading: () => null,
 });
 

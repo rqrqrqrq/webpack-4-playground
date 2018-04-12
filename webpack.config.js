@@ -7,22 +7,27 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
+const STATIC_DIR = 'static';
+const OUTPUT_DIR = 'dist';
+const CLIENT_OUTPUT_DIR = 'client';
+const SRC_DIR = 'src';
+
 const isProd = process.env.NODE_ENV === 'production';
 
-const getFilenameFormat = ext =>
-  isProd ? `[name]-[contenthash].${ext}` : `[name].${ext}`;
+const getFilenameFormat = (dir, ext) =>
+  `${STATIC_DIR}/${dir}/[name]${isProd ? '-[contenthash:8]' : ''}${ext}`;
 
 module.exports = {
-  entry: './src/index.js',
+  entry: `./${SRC_DIR}/index.js`,
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: getFilenameFormat('js'),
-    chunkFilename: getFilenameFormat('js'),
+    path: path.resolve(__dirname, `${OUTPUT_DIR}/${CLIENT_OUTPUT_DIR}`),
+    filename: getFilenameFormat('js', '.js'),
+    chunkFilename: getFilenameFormat('js', '.chunk.js'),
   },
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'src/index.html',
+      template: `${SRC_DIR}/index.html`,
     }),
     process.env.ANALYZE &&
       new BundleAnalyzerPlugin({
@@ -30,7 +35,8 @@ module.exports = {
       }),
     isProd &&
       new MiniCssExtractPlugin({
-        filename: getFilenameFormat('css'),
+        filename: getFilenameFormat('css', '.css'),
+        chunkFilename: getFilenameFormat('css', '.chunk.css'),
       }),
   ].filter(Boolean),
   module: {
@@ -48,14 +54,6 @@ module.exports = {
               { useBuiltIns: true },
             ],
             '@babel/plugin-syntax-dynamic-import',
-            [
-              '@babel/plugin-transform-runtime',
-              {
-                helpers: false,
-                polyfill: false,
-                regenerator: true,
-              },
-            ],
             isProd && [
               'transform-react-remove-prop-types',
               {
@@ -96,7 +94,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(__dirname, SRC_DIR),
     },
   },
   optimization: {

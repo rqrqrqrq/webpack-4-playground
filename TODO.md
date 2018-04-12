@@ -15,3 +15,4 @@ webpack plugins:
 
 * ManifestPlugin
 * ModuleScopePlugin
+* solve case sensitive problem
