@@ -6,6 +6,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 
 const STATIC_DIR = 'static';
 const OUTPUT_DIR = 'dist';
@@ -38,6 +39,9 @@ module.exports = {
         filename: getFilenameFormat('css', '.css'),
         chunkFilename: getFilenameFormat('css', '.chunk.css'),
       }),
+    new ManifestPlugin({
+      fileName: '../manifest.json',
+    }),
   ].filter(Boolean),
   module: {
     rules: [
