@@ -82,6 +82,7 @@ module.exports = {
                 },
                 modules: false,
                 loose: true,
+                useBuiltIns: 'usage',
               },
             ],
           ],
