@@ -28,6 +28,10 @@ export class ChuckNorris extends React.Component {
       return 'Loading';
     }
 
-    return <div>{joke.value}</div>;
+    return (
+      <div>
+        {joke.value} {joke.value.includes('chuck').toString()}
+      </div>
+    );
   }
 }
