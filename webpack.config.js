@@ -106,16 +106,18 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
     },
-    minimizer: [
-      new UglifyJsPlugin({
-        cache: true,
-        parallel: true,
-        sourceMap: !isProd,
-      }),
-      new OptimizeCSSAssetsPlugin({}),
-    ],
+    minimizer: isProd
+      ? [
+          new UglifyJsPlugin({
+            cache: true,
+            parallel: true,
+            sourceMap: false,
+          }),
+          new OptimizeCSSAssetsPlugin({}),
+        ]
+      : [],
   },
-  devtool: !isProd && 'eval-source-map',
+  devtool: !isProd && 'cheap-module-source-map',
   target: 'web',
   mode: isProd ? 'production' : 'development',
 };
